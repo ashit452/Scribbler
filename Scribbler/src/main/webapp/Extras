@@ -1,0 +1,105 @@
+# for new adding new page
+<%@include file="header.jsp" %>
+
+<%@include file="footer.jsp" %>
+
+#for form with fields
+<section id="content-wrap" class="site-page">
+   	<div class="row">
+   		<div class="col-twelve">
+
+   			<section>  
+
+   			
+
+					<div class="primary-content">
+
+						
+						<form name="cForm" id="cForm" method="post" action="">
+	  					   <fieldset>
+
+	                     <div class="form-field">
+	  						      <input name="cName" type="text" id="cName" class="full-width" placeholder="Your Name" value="">
+	                     </div>
+
+	                     <div class="form-field">
+	  						      <input name="cEmail" type="text" id="cEmail" class="full-width" placeholder="Your Email" value="">
+	                     </div>
+
+	                     <div class="form-field">
+	  						      <input name="cWebsite" type="text" id="cWebsite" class="full-width" placeholder="Website"  value="">
+	                     </div>
+
+	                     <div class="message form-field">
+	                        <textarea name="cMessage" id="cMessage" class="full-width" placeholder="Your Message" ></textarea>
+	                     </div>
+
+	                     <button type="submit" class="submit button-primary full-width-on-mobile">Login</button>
+
+	  					   </fieldset>
+  				      </form> <!-- end form -->
+  				    </div>
+
+				</section>
+   		
+
+			</div> <!-- end col-twelve -->
+   	</div> <!-- end row -->		
+   </section> <!-- end content -->
+   
+   
+   #referal
+   String url = request.getHeader("referer");
+		if(!url.equals(null)){
+			String pageName = url.substring(url.lastIndexOf("/")+1);	
+		}
+		
+		
+ $("#un").blur(function(){
+           
+        
+        
+         $.ajax({
+                url: 'check.jsp',
+                data: 'unm='+ $('#un').val(),
+                type: 'post',
+                success: function(msg){
+                  
+                if(msg.slice(6) === 'ERROR') 
+                {    
+                     $("#btnSubmit").attr("disabled", true);
+                    $( "#msgbox" ).removeClass( "showmeerror" );
+                     if( $( "#msgbox2" ).hasClass( "showmeerror" )) {   
+                    
+                }else{
+                    $( "#msgbox2" ).addClass("showmeerror" );
+                }
+                 
+                $("#msgbox").html("*username is already taken");
+                
+                }
+                else
+                {
+                    if(!$("#un").val()){
+                          $( "#msgbox2" ).addClass("showmeerror" );
+                          $( "#msgbox" ).addClass( "showmeerror" );
+                     }else{
+                      $("#btnSubmit").attr("disabled", false);
+                     $( "#msgbox2" ).removeClass( "showmeerror" );
+                   if( $( "#msgbox" ).hasClass( "showmeerror" )) {   
+                    
+                }else{
+                    $( "#msgbox" ).addClass( "showmeerror" );
+                }
+                
+                 $("#msgbox2").html("*username is available");
+                     } 
+                }
+                
+ 
+           }}); 
+        });
+
+        
+        
+select STR_TO_DATE('8:25 PM', '%l:%i %p' )
